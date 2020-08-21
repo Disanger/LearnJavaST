@@ -1,4 +1,4 @@
-package ru.disanger.learning.addressbook;
+package ru.disanger.learning.addressbook.model;
 
 public class GroupData {
     private final String groupName;
