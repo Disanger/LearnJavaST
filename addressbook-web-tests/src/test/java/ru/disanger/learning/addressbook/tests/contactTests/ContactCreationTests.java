@@ -1,7 +1,8 @@
-package ru.disanger.learning.addressbook.tests;
+package ru.disanger.learning.addressbook.tests.contactTests;
 
 import org.testng.annotations.*;
 import ru.disanger.learning.addressbook.model.ContactData;
+import ru.disanger.learning.addressbook.tests.TestBase;
 
 public class ContactCreationTests extends TestBase {
 

@@ -1,7 +1,8 @@
-package ru.disanger.learning.addressbook.tests;
+package ru.disanger.learning.addressbook.tests.groupTests;
 
 import org.testng.annotations.*;
 import ru.disanger.learning.addressbook.model.GroupData;
+import ru.disanger.learning.addressbook.tests.TestBase;
 
 public class GroupCreationTests extends TestBase {
 
