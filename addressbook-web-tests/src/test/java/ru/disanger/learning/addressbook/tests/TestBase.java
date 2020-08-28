@@ -1,12 +1,13 @@
 package ru.disanger.learning.addressbook.tests;
 
+import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import ru.disanger.learning.addressbook.appmanager.AppManager;
 
 public class TestBase {
 
-    protected final AppManager app = new AppManager();
+    protected final AppManager app = new AppManager(BrowserType.SAFARI);
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() {
