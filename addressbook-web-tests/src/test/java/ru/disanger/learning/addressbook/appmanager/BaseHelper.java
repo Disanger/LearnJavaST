@@ -20,8 +20,13 @@ public class BaseHelper {
 
     protected void fillField(By locator, String text) {
         click(locator);
-        wd.findElement(locator).clear();
-        wd.findElement(locator).sendKeys(text);
+        if (text != null) {
+            String existingText = wd.findElement(locator).getAttribute("value");
+            if (!text.equals(existingText)){
+                wd.findElement(locator).clear();
+                wd.findElement(locator).sendKeys(text);
+            }
+        }
     }
 
     protected void acceptAlert() {
@@ -37,7 +42,7 @@ public class BaseHelper {
         }
     }
 
-    private boolean isElementPresent(By by) {
+    public boolean isElementPresent(By by) {
         try {
             wd.findElement(by);
             return true;

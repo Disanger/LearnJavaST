@@ -12,9 +12,10 @@ public class ContactCreationTests extends TestBase {
         app.getContactHelper().fillContactForm(new ContactData("TestName",
                 "TestSurname",
                 "880005553535",
-                "test@mail.zrt"));
+                "test@mail.zrt",
+                "test1"), true);
         app.getContactHelper().submitContactCreation();
-        app.getContactHelper().gotoHomePage();
+        app.getNavigationHelper().gotoHomePage();
     }
 
 }

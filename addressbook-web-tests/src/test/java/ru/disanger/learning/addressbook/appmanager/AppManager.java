@@ -30,7 +30,7 @@ public class AppManager {
         } else if (browser == BrowserType.SAFARI){
         wd = new SafariDriver();
     }
-        wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        wd.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         wd.get("http://localhost/addressbook/index.php");
         contactHelper = new ContactHelper(wd);
         groupHelper = new GroupHelper(wd);
