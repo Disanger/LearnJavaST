@@ -28,8 +28,8 @@ public class AppManager {
         } else if (browser == BrowserType.CHROME){
             wd = new ChromeDriver();
         } else if (browser == BrowserType.SAFARI){
-        wd = new SafariDriver();
-    }
+            wd = new SafariDriver();
+        }
         wd.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         wd.get("http://localhost/addressbook/index.php");
         contactHelper = new ContactHelper(wd);

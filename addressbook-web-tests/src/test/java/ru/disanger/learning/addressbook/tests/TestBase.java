@@ -7,7 +7,7 @@ import ru.disanger.learning.addressbook.appmanager.AppManager;
 
 public class TestBase {
 
-    protected final AppManager app = new AppManager(BrowserType.SAFARI);
+    protected final AppManager app = new AppManager(BrowserType.CHROME);
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() {
