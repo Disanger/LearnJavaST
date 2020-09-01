@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BaseHelper {
 
@@ -49,5 +51,10 @@ public class BaseHelper {
         } catch (NoSuchElementException e) {
             return false;
         }
+    }
+
+    public void waitForElement(By locator) {
+        WebDriverWait wait = new WebDriverWait(wd, 10);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 }
