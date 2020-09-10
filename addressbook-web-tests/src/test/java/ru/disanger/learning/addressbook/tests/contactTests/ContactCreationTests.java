@@ -13,7 +13,7 @@ public class ContactCreationTests extends TestBase {
                 "TestSurname",
                 "880005553535",
                 "test@mail.zrt",
-                "test1"), true);
+                "TestNew1"), true);
         app.getContactHelper().submitContactCreation();
         app.getNavigationHelper().gotoHomePage();
     }

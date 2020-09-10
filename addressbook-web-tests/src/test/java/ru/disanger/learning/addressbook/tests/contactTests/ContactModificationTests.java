@@ -7,7 +7,17 @@ import ru.disanger.learning.addressbook.tests.TestBase;
 public class ContactModificationTests extends TestBase {
     @Test
     public void testContactModification(){
-        app.getContactHelper().initGroupModification();
+        //Check preconditions and make required data
+        if (!app.getContactHelper().isThereAContact()) {
+            app.getContactHelper().createContact(new ContactData("TestName",
+                    "TestSurname",
+                    "880005553535",
+                    "test@mail.zrt",
+                    "TestNew1"));
+            app.getNavigationHelper().gotoHomePage();
+        }
+        //Beginning of test
+        app.getContactHelper().initContactModification();
         app.getContactHelper().fillContactForm(new ContactData("NewName",
                 "NewSurname",
                 "89876543210",

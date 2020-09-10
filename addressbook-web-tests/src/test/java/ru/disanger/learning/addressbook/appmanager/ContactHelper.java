@@ -42,7 +42,7 @@ public class ContactHelper extends BaseHelper{
         acceptAlert();
     }
 
-    public void initGroupModification() {
+    public void initContactModification() {
         click(By.xpath("//img[@alt='Edit']"));
     }
 
@@ -52,5 +52,15 @@ public class ContactHelper extends BaseHelper{
 
     public void returnToHomePage() {
         click(By.linkText("home page"));
+    }
+
+    public void createContact(ContactData contactData) {
+        gotoAddContactPage();
+        fillContactForm(contactData, true);
+        submitContactCreation();
+    }
+
+    public boolean isThereAContact() {
+        return isElementPresent(By.xpath("//img[@alt='Edit']"));
     }
 }
