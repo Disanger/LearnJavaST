@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import ru.disanger.learning.addressbook.model.GroupData;
 import ru.disanger.learning.addressbook.tests.TestBase;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class GroupModificationTests extends TestBase {
@@ -18,12 +19,17 @@ public class GroupModificationTests extends TestBase {
         }
         //Beginning of test
         List<GroupData> before = app.getGroupHelper().getGroupList();
+        GroupData group = new GroupData(before.get(0).getGroupID(), "TestNew1", "TestNew2", "TestNew3");
         app.getGroupHelper().selectGroup(0);
         app.getGroupHelper().initGroupModification();
-        app.getGroupHelper().fillGroupForm(new GroupData("TestNew1", "TestNew2", "TestNew3"));
+        app.getGroupHelper().fillGroupForm(group);
         app.getGroupHelper().submitGroupModification();
         app.getGroupHelper().returnToGroupPage();
         List<GroupData> after = app.getGroupHelper().getGroupList();
-        Assert.assertEquals(after.size(), before.size() + 1);
+        Assert.assertEquals(after.size(), before.size());
+
+        before.remove(0);
+        before.add(group);
+        Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
     }
 }
