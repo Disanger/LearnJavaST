@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 import ru.disanger.learning.addressbook.model.GroupData;
 import ru.disanger.learning.addressbook.tests.TestBase;
 
-import java.util.HashSet;
+import java.util.Comparator;
 import java.util.List;
 
 public class GroupModificationTests extends TestBase {
@@ -30,6 +30,9 @@ public class GroupModificationTests extends TestBase {
 
         before.remove(0);
         before.add(group);
-        Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+        Comparator<? super GroupData> byGroupID = (g1, g2) -> Integer.compare(g1.getGroupID(), g2.getGroupID());
+        before.sort(byGroupID);
+        after.sort(byGroupID);
+        Assert.assertEquals(before, after);
     }
 }
