@@ -2,9 +2,13 @@ package ru.disanger.learning.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.disanger.learning.addressbook.model.ContactData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends BaseHelper{
 
@@ -33,8 +37,8 @@ public class ContactHelper extends BaseHelper{
         click(By.linkText("add new"));
     }
 
-    public void selectContact() {
-        click(By.name("selected[]"));
+    public void selectContact(int number) {
+        wd.findElements(By.name("selected[]")).get(number).click();
     }
 
     public void deleteSelectedContacts() {
@@ -42,8 +46,8 @@ public class ContactHelper extends BaseHelper{
         acceptAlert();
     }
 
-    public void initContactModification() {
-        click(By.xpath("//img[@alt='Edit']"));
+    public void initContactModification(int number) {
+        wd.findElements(By.xpath("//img[@alt='Edit']")).get(number).click();
     }
 
     public void submitContactModification() {
@@ -62,5 +66,19 @@ public class ContactHelper extends BaseHelper{
 
     public boolean isThereAContact() {
         return isElementPresent(By.xpath("//img[@alt='Edit']"));
+    }
+
+    public List<ContactData> getContactList() {
+        List<ContactData>  contacts = new ArrayList<ContactData>();
+        List<WebElement> elements = wd.findElements(By.name("entry"));
+        for (WebElement element : elements) {
+            String name = element.findElements(By.tagName("td")).get(2).getText();
+            String surname = element.findElements(By.tagName("td")).get(1).getText();
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+            ContactData contact = new ContactData(id, name, surname, null, null, null);
+            contacts.add(contact);
+        }
+
+        return contacts;
     }
 }

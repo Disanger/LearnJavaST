@@ -1,8 +1,11 @@
 package ru.disanger.learning.addressbook.tests.contactTests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.disanger.learning.addressbook.model.ContactData;
 import ru.disanger.learning.addressbook.tests.TestBase;
+
+import java.util.List;
 
 public class ContactDeletionTests extends TestBase {
     @Test
@@ -16,9 +19,15 @@ public class ContactDeletionTests extends TestBase {
                     "TestNew1"));
             app.getNavigationHelper().gotoHomePage();
         }
+        List<ContactData> before = app.getContactHelper().getContactList();
         //Beginning of test
-        app.getContactHelper().selectContact();
+        app.getContactHelper().selectContact(before.size() - 1);
         app.getContactHelper().deleteSelectedContacts();
         app.getNavigationHelper().waitReturnAfterDeletingContacts();
+
+        List<ContactData> after = app.getContactHelper().getContactList();
+        Assert.assertEquals(after.size(), before.size() - 1);
+        before.remove(before.size() - 1);
+        Assert.assertEquals(before, after);
     }
 }

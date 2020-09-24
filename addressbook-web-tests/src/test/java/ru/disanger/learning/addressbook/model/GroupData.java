@@ -1,15 +1,12 @@
 package ru.disanger.learning.addressbook.model;
 
 public class GroupData {
-    private  int groupID;
+    private int groupID;
     private final String groupName;
     private final String groupHeader;
     private final String groupFooter;
 
 
-    public int getGroupID() {
-        return groupID;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -38,6 +35,10 @@ public class GroupData {
         this.groupName = groupName;
         this.groupHeader = groupHeader;
         this.groupFooter = groupFooter;
+    }
+
+    public int getGroupID() {
+        return groupID;
     }
 
     public String getGroupName() {
