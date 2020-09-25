@@ -1,12 +1,10 @@
 package ru.disanger.learning.addressbook.model;
 
 public class GroupData {
-    private int groupID;
-    private final String groupName;
-    private final String groupHeader;
-    private final String groupFooter;
-
-
+    private int groupID = Integer.MAX_VALUE;
+    private String groupName;
+    private String groupHeader;
+    private String groupFooter;
 
     @Override
     public boolean equals(Object o) {
@@ -23,18 +21,24 @@ public class GroupData {
         return groupName != null ? groupName.hashCode() : 0;
     }
 
-    public GroupData(String groupName, String groupHeader, String groupFooter) {
-        this.groupID = Integer.MAX_VALUE;
-        this.groupName = groupName;
-        this.groupHeader = groupHeader;
-        this.groupFooter = groupFooter;
+    public GroupData withID(int groupID) {
+        this.groupID = groupID;
+        return this;
     }
 
-    public GroupData(int groupID, String groupName, String groupHeader, String groupFooter) {
-        this.groupID = groupID;
+    public GroupData withName(String groupName) {
         this.groupName = groupName;
+        return this;
+    }
+
+    public GroupData withHeader(String groupHeader) {
         this.groupHeader = groupHeader;
+        return this;
+    }
+
+    public GroupData withFooter(String groupFooter) {
         this.groupFooter = groupFooter;
+        return this;
     }
 
     public int getGroupID() {
@@ -51,10 +55,6 @@ public class GroupData {
 
     public String getGroupFooter() {
         return groupFooter;
-    }
-
-    public void setGroupID(int groupID) {
-        this.groupID = groupID;
     }
 
     @Override
