@@ -1,6 +1,7 @@
 package ru.disanger.learning.addressbook.tests.contactTests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.disanger.learning.addressbook.model.ContactData;
 import ru.disanger.learning.addressbook.tests.TestBase;
@@ -8,9 +9,9 @@ import ru.disanger.learning.addressbook.tests.TestBase;
 import java.util.List;
 
 public class ContactDeletionTests extends TestBase {
-    @Test
-    public void testContactDeletion() {
-        //Check preconditions and make required data
+
+    @BeforeMethod
+    public void ensurePreconditions() {
         if (!app.contact().isThereAContact()) {
             app.contact().create(new ContactData("TestName",
                     "TestSurname",
@@ -19,6 +20,10 @@ public class ContactDeletionTests extends TestBase {
                     "TestNew1"));
             app.goTo().homePage();
         }
+    }
+
+    @Test
+    public void testContactDeletion() {
         List<ContactData> before = app.contact().getList();
         int i = before.size() - 1;
 

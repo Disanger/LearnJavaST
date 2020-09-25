@@ -13,12 +13,15 @@ public class GroupData {
 
         GroupData groupData = (GroupData) o;
 
+        if (groupID != groupData.groupID) return false;
         return groupName != null ? groupName.equals(groupData.groupName) : groupData.groupName == null;
     }
 
     @Override
     public int hashCode() {
-        return groupName != null ? groupName.hashCode() : 0;
+        int result = groupID;
+        result = 31 * result + (groupName != null ? groupName.hashCode() : 0);
+        return result;
     }
 
     public GroupData withID(int groupID) {

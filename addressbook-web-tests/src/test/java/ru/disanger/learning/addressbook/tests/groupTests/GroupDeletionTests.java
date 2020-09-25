@@ -5,25 +5,27 @@ import org.testng.annotations.*;
 import ru.disanger.learning.addressbook.model.GroupData;
 import ru.disanger.learning.addressbook.tests.TestBase;
 
-import java.util.List;
+import java.util.Set;
 
 public class GroupDeletionTests extends TestBase {
 
-  @Test
-  public void testGroupDeletion() {
+  @BeforeMethod
+  public void ensurePreconditions() {
     app.goTo().groupPage();
-    //Check preconditions and make required data
     if (!app.group().isThereAGroup()) {
       app.group().create(new GroupData().withName("Test1"));
     }
-    List<GroupData> before = app.group().getList();
-    int i = before.size() - 1;
-    //Beginning of test
-    app.group().delete(i);
-    List<GroupData> after = app.group().getList();
-    Assert.assertEquals(after.size(), i);
+  }
 
-    before.remove(i);
+  @Test
+  public void testGroupDeletion() {
+    Set<GroupData> before = app.group().all();
+    GroupData deletedGroup = before.iterator().next();
+    app.group().delete(deletedGroup);
+    Set<GroupData> after = app.group().all();
+    Assert.assertEquals(after.size(), before.size() - 1);
+
+    before.remove(deletedGroup);
     Assert.assertEquals(before, after);
 
   }
