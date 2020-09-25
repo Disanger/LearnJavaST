@@ -1,20 +1,20 @@
 package ru.disanger.learning.addressbook.tests;
 
 import org.openqa.selenium.remote.BrowserType;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 import ru.disanger.learning.addressbook.appmanager.AppManager;
 
 public class TestBase {
 
-    protected final AppManager app = new AppManager(BrowserType.CHROME);
+    protected static final AppManager app = new AppManager(BrowserType.CHROME);
 
-    @BeforeMethod(alwaysRun = true)
+    @BeforeSuite
     public void setUp() {
         app.init();
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterSuite
     public void tearDown() {
         app.stop();
     }

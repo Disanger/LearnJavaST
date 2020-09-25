@@ -12,30 +12,31 @@ public class ContactModificationTests extends TestBase {
     @Test
     public void testContactModification(){
         //Check preconditions and make required data
-        if (!app.getContactHelper().isThereAContact()) {
-            app.getContactHelper().createContact(new ContactData("TestName",
+        if (!app.contact().isThereAContact()) {
+            app.contact().create(new ContactData("TestName",
                     "TestSurname",
                     "880005553535",
                     "test@mail.zrt",
                     "TestNew1"));
-            app.getNavigationHelper().gotoHomePage();
+            app.goTo().homePage();
         }
-        List<ContactData> before = app.getContactHelper().getContactList();
+        List<ContactData> before = app.contact().getContactList();
+        int i = 0;
         //Beginning of test
-        app.getContactHelper().initContactModification(0);
-        ContactData contact = new ContactData(before.get(0).getContactID(),
+        app.contact().initModification(i);
+        ContactData contact = new ContactData(before.get(i).getContactID(),
                 "NewName",
                 "NewSurname",
                 "89876543210",
                 "TEST@yandex.zrt",
                 null);
-        app.getContactHelper().fillContactForm(contact, false);
-        app.getContactHelper().submitContactModification();
-        app.getContactHelper().returnToHomePage();
-        List<ContactData> after = app.getContactHelper().getContactList();
+        app.contact().fillForm(contact, false);
+        app.contact().submitModification();
+        app.contact().returnToHomePage();
+        List<ContactData> after = app.contact().getContactList();
         Assert.assertEquals(after.size(), before.size());
 
-        before.remove(0);
+        before.remove(i);
         before.add(contact);
         Comparator<? super ContactData> byContactID = (c1, c2) -> Integer.compare(c1.getContactID(), c2.getContactID());
         before.sort(byContactID);

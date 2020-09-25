@@ -17,11 +17,11 @@ public class ContactHelper extends BaseHelper{
     }
 
 
-    public void submitContactCreation() {
+    public void submitCreation() {
         click(By.xpath("(//input[@name='submit'])[2]"));
     }
 
-    public void fillContactForm(ContactData contactData, boolean creation) {
+    public void fillForm(ContactData contactData, boolean creation) {
         fillField(By.name("firstname"), contactData.getContactName());
         fillField(By.name("lastname"), contactData.getContactSurname());
         fillField(By.name("home"), contactData.getContactPhoneHome());
@@ -37,20 +37,20 @@ public class ContactHelper extends BaseHelper{
         click(By.linkText("add new"));
     }
 
-    public void selectContact(int number) {
+    public void select(int number) {
         wd.findElements(By.name("selected[]")).get(number).click();
     }
 
-    public void deleteSelectedContacts() {
+    public void deleteSelected() {
         click(By.xpath("//input[@value='Delete']"));
         acceptAlert();
     }
 
-    public void initContactModification(int number) {
+    public void initModification(int number) {
         wd.findElements(By.xpath("//img[@alt='Edit']")).get(number).click();
     }
 
-    public void submitContactModification() {
+    public void submitModification() {
         click(By.name("update"));
     }
 
@@ -58,10 +58,10 @@ public class ContactHelper extends BaseHelper{
         click(By.linkText("home page"));
     }
 
-    public void createContact(ContactData contactData) {
+    public void create(ContactData contactData) {
         gotoAddContactPage();
-        fillContactForm(contactData, true);
-        submitContactCreation();
+        fillForm(contactData, true);
+        submitCreation();
     }
 
     public boolean isThereAContact() {
