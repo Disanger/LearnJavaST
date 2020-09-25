@@ -62,6 +62,13 @@ public class GroupHelper extends BaseHelper{
         submitModification();
         returnToGroupPage();
     }
+
+    public void delete(int i) {
+        select(i);
+        deleteSelected();
+        returnToGroupPage();
+    }
+
     public boolean isThereAGroup() {
         return isElementPresent(By.name("selected[]"));
     }

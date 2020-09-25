@@ -20,7 +20,7 @@ public class ContactModificationTests extends TestBase {
                     "TestNew1"));
             app.goTo().homePage();
         }
-        List<ContactData> before = app.contact().getContactList();
+        List<ContactData> before = app.contact().getList();
         int i = 0;
         //Beginning of test
         app.contact().initModification(i);
@@ -30,10 +30,8 @@ public class ContactModificationTests extends TestBase {
                 "89876543210",
                 "TEST@yandex.zrt",
                 null);
-        app.contact().fillForm(contact, false);
-        app.contact().submitModification();
-        app.contact().returnToHomePage();
-        List<ContactData> after = app.contact().getContactList();
+        app.contact().modify(contact);
+        List<ContactData> after = app.contact().getList();
         Assert.assertEquals(after.size(), before.size());
 
         before.remove(i);

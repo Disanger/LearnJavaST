@@ -19,14 +19,14 @@ public class ContactDeletionTests extends TestBase {
                     "TestNew1"));
             app.goTo().homePage();
         }
-        List<ContactData> before = app.contact().getContactList();
+        List<ContactData> before = app.contact().getList();
         int i = before.size() - 1;
+
         //Beginning of test
-        app.contact().select(i);
-        app.contact().deleteSelected();
+        app.contact().delete(i);
         app.goTo().waitReturnAfterDeletingContacts();
 
-        List<ContactData> after = app.contact().getContactList();
+        List<ContactData> after = app.contact().getList();
         Assert.assertEquals(after.size(), i);
         before.remove(i);
         Assert.assertEquals(before, after);

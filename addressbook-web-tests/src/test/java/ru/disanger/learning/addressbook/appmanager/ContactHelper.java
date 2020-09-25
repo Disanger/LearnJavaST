@@ -64,11 +64,22 @@ public class ContactHelper extends BaseHelper{
         submitCreation();
     }
 
+    public void modify(ContactData contact) {
+        fillForm(contact, false);
+        submitModification();
+        returnToHomePage();
+    }
+
+    public void delete(int i) {
+        select(i);
+        deleteSelected();
+    }
+
     public boolean isThereAContact() {
         return isElementPresent(By.xpath("//img[@alt='Edit']"));
     }
 
-    public List<ContactData> getContactList() {
+    public List<ContactData> getList() {
         List<ContactData>  contacts = new ArrayList<ContactData>();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element : elements) {
