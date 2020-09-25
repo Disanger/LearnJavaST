@@ -8,4 +8,5 @@ dependencies {
     implementation 'org.testng:testng:7.3.0'
     implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
     implementation 'com.google.guava:guava:29.0-jre'
+    implementation 'org.hamcrest:hamcrest:2.2'
 }

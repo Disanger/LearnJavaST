@@ -6,8 +6,6 @@ import org.testng.annotations.Test;
 import ru.disanger.learning.addressbook.model.GroupData;
 import ru.disanger.learning.addressbook.tests.TestBase;
 
-import java.util.Comparator;
-import java.util.List;
 import java.util.Set;
 
 public class GroupModificationTests extends TestBase {
@@ -15,7 +13,7 @@ public class GroupModificationTests extends TestBase {
     @BeforeMethod
     public void ensurePreconditions() {
         app.goTo().groupPage();
-        if (!app.group().isThereAGroup()) {
+        if (app.group().all().size() == 0) {
             app.group().create(new GroupData().withName("Test1"));
         }
     }
